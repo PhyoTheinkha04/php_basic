@@ -8,7 +8,7 @@
 <br>
 
 <?php
-$i=0;
+ $i=0;
    $champions = array("Zed", "Yasuo" , "Katarina" , "Lux" , "Kassadin");
    while ($i < count($champions)) {
     echo $champions[$i] . "<br>";
@@ -19,7 +19,7 @@ $i=0;
 <br>
 
 <?php
-$i=0;
+ $i=0;
   $champions = array("Zed", "Yasuo" , "Katarina" , "Lux" , "Kassadin");
   do {
   echo $champions[$i] . "<br>";
@@ -34,9 +34,11 @@ $i=0;
   array ( 7,8,9),
  );
 
-for($i=0; $i < count($ary) ; $i++) { 
+ for($i=0; $i < count($ary) ; $i++) { 
     for ($j=0; $j < count($ary[$i]) ; $j++) { 
       echo $ary[$i][$j];
     }
     echo "<hr>";
+    
   }
+?>

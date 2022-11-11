@@ -13,4 +13,3 @@ function mySetCookie(){
  }
  //mySetCookie();
  myGetCookie();
- 

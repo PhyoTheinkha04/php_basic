@@ -1,10 +1,14 @@
 <?php
 
-$file = "exc.txt";
+ $file = "nah.txt";
 
-if (file_exists($file)) {
-   echo "File exist";
-}else {
-   echo "file not exist";
-   echo "hay i am good";
-}
+ try{
+    if (file_exists($file)) {
+        echo "file exist";
+    }else{
+        throw new Exception("file not found!");
+    }
+ }catch(Exception $e){
+    echo $e->getMessage();
+ }
+

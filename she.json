@@ -1,0 +1,17 @@
+
+    [
+       {
+        "name":  "Phyo Theinkha",
+        "age": 18, 
+        "subject":  "c++, Python, Assembly",
+        "address":  "mars",
+         "married":  "nope"
+        },
+        {
+        "name": "Phyo Theinkha",
+        "age": 18, 
+        "subject":  "c++, Python, Assembly",
+        "address":  "mars",
+        "married":  "nope"
+        }
+    ]

@@ -48,11 +48,13 @@
         }
      }
 } 
+
 function insertData($qry){
       $db = dbConnect();
       $result = mysqli_query($db,$qry);
       echo $result > 0 ? "Data Insert Successfully" . mysqli_insert_id($db) : "Data Insert Fail";
 }
+
 function insertUniqueData($name,$email,$pass){
       $qry = "SELECT * FROM users WHERE name='$name'";
       $db = dbConnect();
@@ -68,14 +70,36 @@ function insertUniqueData($name,$email,$pass){
       }
      
 }
+
 function passGen($pass){
     $pass = md5($pass);
     $pass = sha1($pass);
     $pass = crypt($pass, $pass);
     return $pass;
 }
+
 function errDubbger($data){
     echo "<pre>" . print_r($data, true) . "</pre>";
+}
+
+function multiInsertData($qry){
+    $db = dbConnect();
+    $result = mysqli_multi_query($db,$qry);
+    echo $result ? "Data Insert Successfully" : "Data insert Fail";
+}
+
+function delteData($id){
+    $qry = "DELETE FROM users WHERE id=$id";
+    $db = dbConnect();
+    $result = mysqli_query($db,$qry);
+    echo $result ? "Deleted" : "Delete Fail!";
+
+}
+
+function updateData($qry){
+  $db = dbConnect();
+  $result = mysqli_query($db,$qry);
+  echo $result ? "Data Update Successfully" : "Data Update Fail!";
 }
 
   $qry = "SELECT * FROM users";
@@ -83,9 +107,15 @@ function errDubbger($data){
   $pass = passGen(123);
 
 
-  $qry = "SELECT * FROM users WHERE id!= 4";
-  $qry = "INSERT INTO users  VALUES (0,'zuxyy','zuxxy@gmali.com','$pass','')";
-  insertUniqueData("yasuo","yasuo@gmail.com",$pass);
-  //insertData($qry);
+  //$qry = "SELECT * FROM users WHERE id!= 4";
+  //$qry = "INSERT INTO users  VALUES (0,'zuxyy','zuxxy@gmali.com','$pass','')";
 
-
+  $qry = "INSERT INTO users VALUE (0,'Tun Tun' , 'tuntun@gmail.com' , '$pass' , '');";
+  $qry .= "INSERT INTO users VALUE (0,'Su Su' , 'susu@gmail.com' , '$pass' , '');";
+  $qry .= "INSERT INTO users VALUE (0,'Tun Tun' , 'uhla@gmail.com' , '$pass' ,'');";
+  $qry .= "INSERT INTO users VALUE (0,'Daw Mya' , 'dawmya@gmail.com' , '$pass' ,'');";
+  
+  
+  $qry = "SELECT * FROM users";
+  $qry = "UPDATE users SET name ='Ma Mya' WHERE name='zuxxy'";
+  updateData($qry);

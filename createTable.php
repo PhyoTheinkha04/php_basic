@@ -117,12 +117,14 @@ function updateData($qry){
   
   
   $qry = "SELECT * FROM users";
-  $qry = "UPDATE users SET name ='Ma Mya' WHERE name='zuxxy'";
+  $qry = "UPDATE users SET name ='Ma Mya'";
 
-  // $qry = "CREATE TABLE subject(
-  //   id INT(10) UNSINGED PRIMARY KEY AUTO_INCREMENT ,
-  //   name VARCHAR(225) UNIQUE NOT NULL,
-  //   created_at date,
-  //   updated_at date
-  // );";
-  updateData($qry);
+$qry = "CREATE TABLE subject(
+    id INT(10) UNSIGNED PRIMARY KEY AUTO_INCREMENT ,
+    name VARCHAR(225) UNIQUE NOT NULL,
+    created_at date,
+    updated_at date
+  );";
+  
+  $result = mysqli_query(dbConnect(),$qry);
+  echo $result ? "Table Created Successfully" : "Table Creation Fail";

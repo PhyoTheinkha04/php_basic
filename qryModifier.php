@@ -29,8 +29,8 @@
          }
      }
 
-    echo mysqli_num_rows($result);
-    errDubbger($result);
+    //echo mysqli_num_rows($result);
+    //errDubbger($result);
  }
 
  function retrieveSingleData($qry){ 
@@ -78,9 +78,9 @@ function passGen($pass){
     return $pass;
 }
 
-function errDubbger($data){
-    echo "<pre>" . print_r($data, true) . "</pre>";
-}
+// function errDubbger($data){
+//     echo "<pre>" . print_r($data, true) . "</pre>";
+// }
 
 function multiInsertData($qry){
     $db = dbConnect();
@@ -102,27 +102,23 @@ function updateData($qry){
   echo $result ? "Data Update Successfully" : "Data Update Fail!";
 }
 
-  $qry = "SELECT * FROM users";
-  $extra = NULL;
-  $pass = passGen(123);
+function retriveDataNewStyle($qry){
+  $db = dbConnect();
+  $result = mysqli_query($db,$qry);
+  if (mysqli_num_rows($result)>0) {
+     while($row = mysqli_fetch_assoc($result)){
+       echo "Id is " . $row["id"] . "<br>";
+       echo "Name is " . $row ["name"] . "<br>";
+       echo "Email is " . $row ["email"] . "<br>";
+       echo "Password is" . $row["password"] . "<br>";
+       echo "<hr>";
+     }
+  }
+}
 
-
-  //$qry = "SELECT * FROM users WHERE id!= 4";
-  //$qry = "INSERT INTO users  VALUES (0,'zuxyy','zuxxy@gmali.com','$pass','')";
-
-  $qry = "INSERT INTO users VALUE (0,'Tun Tun' , 'tuntun@gmail.com' , '$pass' , '');";
-  $qry .= "INSERT INTO users VALUE (0,'Su Su' , 'susu@gmail.com' , '$pass' , '');";
-  $qry .= "INSERT INTO users VALUE (0,'Tun Tun' , 'uhla@gmail.com' , '$pass' ,'');";
-  $qry .= "INSERT INTO users VALUE (0,'Daw Mya' , 'dawmya@gmail.com' , '$pass' ,'');";
-  
-  
-  $qry = "SELECT * FROM users";
-  $qry = "UPDATE users SET name ='Ma Mya' WHERE name='zuxxy'";
-
-  // $qry = "CREATE TABLE subject(
-  //   id INT(10) UNSINGED PRIMARY KEY AUTO_INCREMENT ,
-  //   name VARCHAR(225) UNIQUE NOT NULL,
-  //   created_at date,
-  //   updated_at date
-  // );";
-  updateData($qry);
+$qry = "SELECT * FROM users WHERE extra IS NULL";
+retriveDataNewStyle($qry);
+//$qry = "SELECT * FROM users ORDER BY name DESC";
+//$qry = "SELECT * FROM users WHERE id>2";
+//$qry = "SELECT * FROM users LIMIT 3,2";
+//executeQuery($qry);
